@@ -1,0 +1,58 @@
+# This is a basic workflow to help you get started with Actions
+
+name: OpenVPN v3
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - name: Set VPN env
+        run: |
+          echo "ca_crt<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.CA_CRT }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          echo "client_crt<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.CLIENT_CRT }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          echo "client_key<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.CLIENT_KEY }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          echo "ta_key<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.TA_KEY }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Write VPN Files
+        run: |
+          echo "${{ env.ca_crt }}" > .github/vpn/ca.crt
+          echo "${{ env.client_crt }}" > .github/vpn/client.crt
+          echo "${{ env.client_key }}" > .github/vpn/client.key
+          echo "${{ env.ta_key }}" > .github/vpn/ta.key
+
+      - name: Install Open VPN
+        run: |
+          sudo apt install apt-transport-https
+          sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+          sudo apt-key add openvpn-repo-pkg-key.pub
+          sudo wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-bionic.list
+          sudo apt update
+          sudo apt install openvpn3
+
+      - name: Start Open VPN 3
+        run: openvpn3 session-start --config .github/vpn/client.ovpn
