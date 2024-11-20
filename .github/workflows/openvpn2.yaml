@@ -46,9 +46,9 @@ jobs:
           sudo apt install openvpn3
       - name: VPN Connect
         run: |
-          echo ${VPN_USER}
-          echo ${VPN_PASS}
-          { echo ${VPN_USER} ; echo ${VPN_PASS} ; } | openvpn3 session-start --config .github/vpn.ovpn
+          echo ${VPN_USERNAME}
+          echo ${VPN_PASSWORD}
+          { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config .github/vpn.ovpn
       
       # ============== STUFF U NEED VPN FOR GOES HERE =====================
       # ..........................
