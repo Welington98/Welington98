@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: OpenVPN v2
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # ===============================================================================================
+      # ========================================= VPN SETUP ===========================================
+      # ===============================================================================================
+      # BASED ON: https://github.com/golfzaptw/action-connect-ovpn/issues/36#issuecomment-746201549
+      - name: Set Variables
+        uses: allenevans/set-env@v2.0.0
+        with:
+          OVPN_CONFIG: ${{ secrets.OVPN_CONFIG }}
+          VPN_USER: ${{ secrets.VPN_USER }}
+          VPN_PASS: ${{ secrets.VPN_PASS }}
+      - name: Write VPN Files
+        run: |
+          mkdir ~/.ssh
+          echo "${OVPN_CONFIG}" > .github/vpn.ovpn
+      - name: Install openvpn3
+        run: |
+          sudo apt install apt-transport-https
+          sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+          sudo apt-key add openvpn-repo-pkg-key.pub
+          DISTRO=`lsb_release -c -s`; sudo wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$DISTRO.list
+          sudo apt update
+          sudo apt install openvpn3
+      - name: VPN Connect
+        run: |
+          echo ${VPN_USER}
+          echo ${VPN_PASS}
+          { echo ${VPN_USER} ; echo ${VPN_PASS} ; } | openvpn3 session-start --config .github/vpn.ovpn
+      
+      # ============== STUFF U NEED VPN FOR GOES HERE =====================
+      # ..........................
+      # ===================================================================
+
+      
+      - name: Kill VPN Connection
+        if: always()
+        run: |
+          openvpn3 session-manage --disconnect --config .github/vpn.ovpn
+      # ===============================================================================================
