@@ -32,11 +32,17 @@ jobs:
           OVPN_CONFIG: ${{ secrets.OVPN_CONFIG }}
           VPN_USER: ${{ secrets.OVPN_USERNAME }}
           VPN_PASS: ${{ secrets.OVPN_PASSWORD }}
-      - name: Write VPN Files
+      
+      - name: Decode VPN Config
         run: |
-          mkdir ~/.ssh
-          mkdir -p ~/.github/workflows/
-          echo "${OVPN_CONFIG}" > vpn.ovpn
+          echo "${{ secrets.OVPN_CONFIG_BASE64 }}" | base64 -d > vpn.ovpn
+      
+      # - name: Write VPN Files
+      #   run: |
+      #     mkdir ~/.ssh
+      #     mkdir -p ~/.github/workflows/
+      #     echo "${OVPN_CONFIG}" > vpn.ovpn
+      
       - name: Install openvpn3
         run: |
           sudo apt install apt-transport-https
