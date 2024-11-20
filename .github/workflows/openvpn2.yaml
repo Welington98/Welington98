@@ -29,13 +29,13 @@ jobs:
       - name: Set Variables
         uses: allenevans/set-env@v2.0.0
         with:
-          OVPN_CONFIG: ${{ secrets.OVPN_CONFIG }}
+          # OVPN_CONFIG: ${{ secrets.OVPN_CONFIG }}
           VPN_USER: ${{ secrets.OVPN_USERNAME }}
           VPN_PASS: ${{ secrets.OVPN_PASSWORD }}
       
       - name: Decode VPN Config
         run: |
-          echo "${{ secrets.OVPN_CONFIG_BASE64 }}" | base64 -d > vpn.ovpn
+          echo "${{ secrets.OVPN_CONFIG }}" | base64 -d > vpn.ovpn
       
       # - name: Write VPN Files
       #   run: |
