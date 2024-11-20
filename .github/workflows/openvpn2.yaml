@@ -35,6 +35,7 @@ jobs:
       - name: Write VPN Files
         run: |
           mkdir ~/.ssh
+          mkdir -p ~/.github/workflows/
           echo "${OVPN_CONFIG}" > .github/workflows/vpn.ovpn
       - name: Install openvpn3
         run: |
