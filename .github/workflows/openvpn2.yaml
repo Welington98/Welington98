@@ -35,7 +35,7 @@ jobs:
       - name: Write VPN Files
         run: |
           mkdir ~/.ssh
-          echo "${OVPN_CONFIG}" > .github/vpn.ovpn
+          echo "${OVPN_CONFIG}" > .github/workflows/vpn.ovpn
       - name: Install openvpn3
         run: |
           sudo apt install apt-transport-https
