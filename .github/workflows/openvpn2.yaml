@@ -30,8 +30,8 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           OVPN_CONFIG: ${{ secrets.OVPN_CONFIG }}
-          VPN_USER: ${{ secrets.VPN_USER }}
-          VPN_PASS: ${{ secrets.VPN_PASS }}
+          VPN_USER: ${{ secrets.OVPN_USERNAME }}
+          VPN_PASS: ${{ secrets.OVPN_PASSWORD }}
       - name: Write VPN Files
         run: |
           mkdir ~/.ssh
