@@ -51,6 +51,14 @@ jobs:
           echo ${VPN_PASSWORD}
           { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config vpn.ovpn
       
+      - name: "Debug: List files"
+        run: ls -R ~/.github/workflows/
+
+      - name: Kill VPN Connection
+        if: always()
+        run: |
+          openvpn3 session-manage --disconnect --config vpn.ovpn
+      
       # ============== STUFF U NEED VPN FOR GOES HERE =====================
       # ..........................
       # ===================================================================
