@@ -36,6 +36,9 @@ jobs:
       - name: Decode VPN Config
         run: |
           echo "${{ secrets.OVPN_CONFIG }}" | base64 -d > vpn.ovpn
+      - name: "Debug: Print VPN Config"
+        run: |
+          cat vpn.ovpn
       
       # - name: Write VPN Files
       #   run: |
@@ -43,35 +46,35 @@ jobs:
       #     mkdir -p ~/.github/workflows/
       #     echo "${OVPN_CONFIG}" > vpn.ovpn
       
-      - name: Install openvpn3
-        run: |
-          sudo apt install apt-transport-https
-          sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
-          sudo apt-key add openvpn-repo-pkg-key.pub
-          DISTRO=`lsb_release -c -s`; sudo wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$DISTRO.list
-          sudo apt update
-          sudo apt install openvpn3
-      - name: VPN Connect
-        run: |
-          echo ${VPN_USERNAME}
-          echo ${VPN_PASSWORD}
-          { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config vpn.ovpn
+      # - name: Install openvpn3
+      #   run: |
+      #     sudo apt install apt-transport-https
+      #     sudo wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+      #     sudo apt-key add openvpn-repo-pkg-key.pub
+      #     DISTRO=`lsb_release -c -s`; sudo wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$DISTRO.list
+      #     sudo apt update
+      #     sudo apt install openvpn3
+      # - name: VPN Connect
+      #   run: |
+      #     echo ${VPN_USERNAME}
+      #     echo ${VPN_PASSWORD}
+      #     { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config vpn.ovpn
       
-      - name: "Debug: List files"
-        run: ls -R ~/.github/workflows/
+      # - name: "Debug: List files"
+      #   run: ls -R ~/.github/workflows/
 
-      - name: Kill VPN Connection
-        if: always()
-        run: |
-          openvpn3 session-manage --disconnect --config vpn.ovpn
+      # - name: Kill VPN Connection
+      #   if: always()
+      #   run: |
+      #     openvpn3 session-manage --disconnect --config vpn.ovpn
       
       # ============== STUFF U NEED VPN FOR GOES HERE =====================
       # ..........................
       # ===================================================================
 
       
-      - name: Kill VPN Connection
-        if: always()
-        run: |
-          openvpn3 session-manage --disconnect --config .github/vpn.ovpn
+      # - name: Kill VPN Connection
+      #   if: always()
+      #   run: |
+      #     openvpn3 session-manage --disconnect --config .github/vpn.ovpn
       # ===============================================================================================
