@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir ~/.ssh
           mkdir -p ~/.github/workflows/
-          echo "${OVPN_CONFIG}" > .github/workflows/vpn.ovpn
+          echo "${OVPN_CONFIG}" > vpn.ovpn
       - name: Install openvpn3
         run: |
           sudo apt install apt-transport-https
@@ -49,7 +49,7 @@ jobs:
         run: |
           echo ${VPN_USERNAME}
           echo ${VPN_PASSWORD}
-          { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config .github/vpn.ovpn
+          { echo ${VPN_USERNAME} ; echo ${VPN_PASSWORD} ; } | openvpn3 session-start --config vpn.ovpn
       
       # ============== STUFF U NEED VPN FOR GOES HERE =====================
       # ..........................
