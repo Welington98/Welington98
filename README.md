@@ -1,5 +1,7 @@
 # 👨🏻‍💻 Welington Oliveira
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Welington%20Oliveira-0A66C2?style=for-the-badge\&logo=linkedin\&logoColor=white)](https://www.linkedin.com/in/welingtonoliveiradossantos/)
+
 **`Analista de DevOps`**
 
 Me chamo Welington Oliveira, atuo exclusivamente como Analista de DevOps com foco em automação, infraestrutura como código, CI/CD e observabilidade. Tenho quase 10 anos de experiência na área de tecnologia, sendo a maior parte em infraestrutura on-premise, e atualmente trabalho com soluções em nuvem, especialmente na AWS e Oracle Cloud (OCI).
