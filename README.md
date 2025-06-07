@@ -16,11 +16,11 @@ Também sou responsável por criar ambientes escaláveis, seguros e organizados,
 <img align="left" alt="Kubernetes" title="Kubernetes" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" />
 <img align="left" alt="Helm" title="Helm" width="35px" style="padding-right: 10px;" src="https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg" />
 <img align="left" alt="AWS" title="AWS" width="35px" style="padding-right: 10px;" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-<img align="left" alt="Oracle Cloud" title="Oracle Cloud" width="35px" style="padding-right: 10px;" src="https://www.oracle.com/a/ocom/img/cb71-cloud.svg" />
+<img align="left" alt="Oracle Cloud" title="Oracle Cloud" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" />
 <img align="left" alt="Prometheus" title="Prometheus" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" />
 <img align="left" alt="Loki" title="Grafana Loki" width="35px" style="padding-right: 10px;" src="https://raw.githubusercontent.com/grafana/loki/main/docs/sources/logo.png" />
 <img align="left" alt="Grafana" title="Grafana" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" />
-<img align="left" alt="Zabbix" title="Zabbix" width="35px" style="padding-right: 10px;" src="https://assets.zabbix.com/img/brands/zabbix_logo_500x131.png" />
+<img align="left" alt="Zabbix" title="Zabbix" width="35px" style="padding-right: 10px;" src="https://www.vectorlogo.zone/logos/zabbix/zabbix-icon.svg" />
 <img align="left" alt="Terraform" title="Terraform" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" />
 <img align="left" alt="Ansible" title="Ansible" width="35px" style="padding-right: 10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" />
 <img align="left" alt="GitHub Actions" title="GitHub Actions" width="35px" style="padding-right: 10px;" src="https://avatars.githubusercontent.com/u/44036562?s=200&v=4" />
@@ -31,7 +31,7 @@ Também sou responsável por criar ambientes escaláveis, seguros e organizados,
 <br/>
 <br/>
 
-### 📈 Métricas GitHub (automáticas)
+### 📈 Métricas GitHub
 
 <p>
   <img
